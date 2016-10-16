@@ -24,40 +24,31 @@ function getInputParts()
 end
 
 function assemble(parts)
+  local rarity = findRarity(parts)
+  local weaponType = parts["middle"].parameters.weaponType:lower()
   local newGun = {
-    name = "rareassaultrifle",
+    name = rarity .. weaponType,
     count = 1,
     parameters = {
-      itemName = "rareassaultrifle",
+      itemName = rarity .. weaponType,
       assembled = true,
-      shortdescription = "Rare Assault Rifle", --findName(parts),
-      rarity = "Rare"--findRarity(parts)
+      rarity = rarity
     }
   }
 
-  newGun.parameters.level = 1 --(parts["butt"].parameters.weaponData.level + parts["middle"].parameters.weaponData.level + parts["barrel"].parameters.weaponData.level) / 3
-  -- newGun.parameters.levelScale = (parts["butt"].parameters.weaponData.levelScale + parts["middle"].parameters.weaponData.levelScale + parts["barrel"].parameters.weaponData.levelScale) / 3
-
-  local images = {}
+  local weaponDataArr = {}
   for partName,part in pairs(parts) do
-    -- if newGun.parameters.weaponType and newGun.parameters.weaponType ~= part.parameters.weaponData.weaponType then return false end
-
-    -- newGun.parameters.weaponType = part.parameters.weaponData.weaponType
-    images[partName] = part.parameters.image
+    weaponDataArr[partName] = part.parameters.averageableData
     local propertiesToStore = root.itemConfig(parts[partName]).config.propertiesToStore
-    sb.logInfo("Merging parts[%s] : %s", partName, parts[partName])
     util.mergeTable(newGun, cloneProperties(propertiesToStore, parts[partName].parameters.weaponData))
-    --[[
-    stats = self.partStats[partName]
-    for _,stat in ipairs(stats) do
-      if part.parameters.weaponData[stat] ~= nil then newGun.parameters[stat] = part.parameters.weaponData[stat] end
-    end
-    --]]
   end
 
-  local drawables = makeDrawables(images)
-  -- newGun.parameters.drawables = drawables
-  -- newGun.parameters.inventoryIcon = drawables
+  sb.logInfo("weaponDataArr : %s", weaponDataArr)
+  local propertiesToAverage = root.itemConfig(parts["middle"]).config.propertiesToAverage
+  sb.logInfo("propertiesToAverage : %s", propertiesToAverage)
+  local averagedProperties = averageProperties(propertiesToAverage, weaponDataArr)
+  sb.logInfo("averagedProperties : %s", averagedProperties)
+  util.mergeTable(newGun, averagedProperties)
 
   return newGun
 end
@@ -84,18 +75,6 @@ function findRarity(parts)
     local rarity = part.parameters.rarity:lower()
     if rarity then sum = sum + rarityValues[rarity] end
   end
-  local avg = math.floor(sum / 3)
+  local avg = math.floor(sum / 3 + 0.5)
   return rarities[avg]
-end
-
-function makeDrawables(images)
-  local buttSize = root.imageSize(images["butt"])
-  local middleSize = root.imageSize(images["middle"])
-  local barrelSize = root.imageSize(images["barrel"])
-
-  local drawables = {}
-  drawables[1] = {image = images["butt"], position = {-math.ceil(buttSize[1] / 2) + -math.floor(middleSize[1] / 2) + 0.1, 0}}
-  drawables[2] = {image = images["middle"], position = {0,0}}
-  drawables[3] = {image = images["barrel"], position = {math.floor(barrelSize[1] / 2) + math.ceil(middleSize[1] / 2) - 0.1, 0}}
-  return drawables
 end

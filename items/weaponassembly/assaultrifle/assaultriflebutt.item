@@ -21,5 +21,13 @@
       "altAbilityType" : true,
       "elementalType" : true
     }
+  },
+  "propertiesToAverage" : {
+    "config" : {
+       "price" : true
+    },
+    "parameters":{
+      "level" : true
+    }
   }
 }

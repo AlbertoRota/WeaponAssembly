@@ -32,43 +32,17 @@ function disassemble(weapon)
         inventoryIcon = getPartImage(partName, weaponConfig),
         shortdescription = buildShortDescription(partName, weaponConfig),
         description = buildDescription(partName, weaponConfig),
+        weaponType = root.itemConfig(weapon).config.category,
         weaponData = {}
       }
     }
 
-    --[[
-    if partName == "middle" and splitName[1] then parts[partName].parameters.weaponData.weaponName = splitName[1] end
-    if partName == "butt" and splitName[2] then parts[partName].parameters.weaponData.weaponName = splitName[2] end
-    if partName == "barrel" and splitName[3] then parts[partName].parameters.weaponData.weaponName = splitName[3] end
-    --]]
-
-    -- Stat copy process, traslate to weapon part rather that to station
+    -- Stat copy process
     local propertiesToStore = root.itemConfig(parts[partName]).config.propertiesToStore
     parts[partName].parameters.weaponData = cloneProperties(propertiesToStore, root.itemConfig(weapon))
 
-    --[[
-    for _,stat in ipairs(stats) do
-      sb.logInfo("stat : %s", stat)
-
-      -- Find a better way to copy this stats, perhaps a table format
-      if weapon.parameters[stat] ~= nil then
-        sb.logInfo("weapon.parameters[stat] : %s", weapon.parameters[stat])
-        parts[partName].parameters.weaponData[stat] = weapon.parameters[stat]
-      elseif weapon.parameters.primaryAbility[stat] ~= nil then
-        sb.logInfo("weapon.parameters.primaryAbility[stat] : %s", weapon.parameters.primaryAbility[stat])
-        parts[partName].parameters.weaponData[stat] = weapon.parameters.primaryAbility[stat]
-      end
-    end
-    --]]
-
-    -- Review this thing
-    --[[
-    for _,stat in ipairs(self.globalStats) do
-      if weapon.parameters[stat] ~= nil then
-        parts[partName].parameters.weaponData[stat] = weapon.parameters[stat]
-      end
-    end
-    --]]
+    local propertiesToAverage = root.itemConfig(parts[partName]).config.propertiesToAverage
+    parts[partName].parameters.averageableData = cloneProperties(propertiesToAverage, root.itemConfig(weapon))
 
   end
 

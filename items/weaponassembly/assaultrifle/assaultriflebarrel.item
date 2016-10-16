@@ -27,5 +27,13 @@
          "burstCount" : true
       }
     }
+  },
+  "propertiesToAverage" : {
+    "config" : {
+       "price" : true
+    },
+    "parameters":{
+      "level" : true
+    }
   }
 }

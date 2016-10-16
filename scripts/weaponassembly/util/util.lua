@@ -39,3 +39,42 @@ function cloneProperties (propertiesToStore, weaponConfig)
   setmetatable(target, meta)
   return target
 end
+
+function averageProperties (propertiesToStore, weaponConfigArr)
+  sb.logInfo("called with propertiesToStore : %s", propertiesToStore)
+  sb.logInfo("called with weaponConfigArr : %s", weaponConfigArr)
+  -- Load value/table into target and return
+  if type(propertiesToStore) ~= "table" then
+    sb.logInfo("Mean of : %s", weaponConfigArr)
+    return  mean(weaponConfigArr)
+  end
+
+  -- Go one level deeper
+  local meta = getmetatable(propertiesToStore)
+  local target = {}
+  for k, v in pairs(propertiesToStore) do
+    local t = {}
+    for key,value in pairs(weaponConfigArr) do
+      t[key] = value[k] or 0
+    end
+    target[k] = averageProperties(propertiesToStore[k], t)
+  end
+  setmetatable(target, meta)
+  return target
+end
+
+function mean( t )
+  local sum = 0
+  local count= 0
+
+  for k,v in pairs(t) do
+    if type(v) == 'number' then
+      sum = sum + v
+      count = count + 1
+    else
+      sb.logInfo("Error averaging %s in %s", v, t)
+    end
+  end
+
+  return (sum / count)
+end
