@@ -1,0 +1,12 @@
+{
+  "author" : "AlbertoRota",
+  "description" : "This mod will let you break guns into parts and then combine the parts into new guns!",
+  "friendlyName" : "Weapon assembly",
+  "includes" : [ ],
+  "link" : "",
+  "name" : "WeaponAssembly",
+  "path" : ".",
+  "requires" : [],
+  "steamContentId" : "",
+  "version" : "0.1.0"
+}
