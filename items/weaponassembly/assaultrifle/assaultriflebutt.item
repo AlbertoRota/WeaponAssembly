@@ -1,0 +1,25 @@
+{
+  "itemName" : "assaultriflebutt",
+  "price" : 0,
+  "rarity" : "Common",
+  "category" : "craftingMaterial",
+  "inventoryIcon" : "assaultriflebutt.png",
+  "description" : "An stock stripped from a fully automatic, military grade rifle.",
+  "shortdescription" : "Assault Rifle Stock",
+  "itemTags" : [ "reagent" ],
+  "propertiesToStore" : {
+    "config" : {
+      "primaryAbility" : {
+         "projectileType" : true,
+         "projectileParameters" : true
+       }
+    },
+    "parameters":{
+      "animationPartVariants":{
+         "butt" : true
+      },
+      "altAbilityType" : true,
+      "elementalType" : true
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "itemName" : "assaultriflemiddle",
+  "price" : 0,
+  "rarity" : "Common",
+  "category" : "craftingMaterial",
+  "inventoryIcon" : "assaultriflemiddle.png",
+  "description" : "A body stripped from a fully automatic, military grade rifle.",
+  "shortdescription" : "Assault Rifle Body",
+  "itemTags" : [ "reagent" ],
+  "propertiesToStore" : {
+    "config" : {
+      "primaryAbility" : {
+         "fireTime" : true,
+         "energyUsage" : true
+       },
+       "paletteSwaps" : true
+    },
+    "parameters":{
+      "animationPartVariants":{
+         "middle" : true
+      },
+      "primaryAbility":{
+        "fireTimeFactor" : true,
+        "energyUsageFactor" : true
+      },
+      "seed" : true
+    }
+  }
+}

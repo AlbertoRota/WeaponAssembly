@@ -1,0 +1,31 @@
+{
+  "itemName" : "assaultriflebarrel",
+  "price" : 0,
+  "rarity" : "Common",
+  "category" : "craftingMaterial",
+  "inventoryIcon" : "assaultriflebarrel.png",
+  "description" : "A barrel stripped from a fully automatic, military grade rifle.",
+  "shortdescription" : "Assault Rifle Barrel",
+  "itemTags" : [ "reagent" ],
+  "propertiesToStore" : {
+    "config" : {
+      "primaryAbility" : {
+         "inaccuracy" : true,
+         "burstCount" : true,
+         "projectileCount" : true,
+         "fireType" : true,
+         "burstTime" : true,
+         "baseDps" : true
+      }
+    },
+    "parameters" : {
+      "animationPartVariants":{
+         "barrel" : true
+      },
+      "primaryAbility":{
+         "baseDpsFactor" : true,
+         "burstCount" : true
+      }
+    }
+  }
+}
