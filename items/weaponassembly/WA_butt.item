@@ -1,11 +1,11 @@
 {
-  "itemName" : "assaultriflebutt",
+  "itemName" : "WA_butt",
   "price" : 0,
   "rarity" : "Common",
   "category" : "craftingMaterial",
-  "inventoryIcon" : "assaultriflebutt.png",
-  "description" : "An stock stripped from a fully automatic, military grade rifle.",
-  "shortdescription" : "Assault Rifle Stock",
+  "inventoryIcon" : "WA_butt.png",
+  "description" : "An stock stripped from a weapon.",
+  "shortdescription" : "Stock",
   "itemTags" : [ "reagent" ],
   "propertiesToStore" : {
     "config" : {

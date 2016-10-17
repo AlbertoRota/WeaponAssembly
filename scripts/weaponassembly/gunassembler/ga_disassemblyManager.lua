@@ -2,7 +2,10 @@ require "/scripts/weaponassembly/util/util.lua"
 
 function breakIntoParts()
   local inputGun = world.containerItemAt(entity.id(), 3)
-  if inputGun and self.acceptedWeapons[inputGun.name] then
+  if inputGun then
+    sb.logInfo("builder : %s", root.itemConfig(inputGun).config.builder)
+  end
+  if inputGun and root.itemConfig(inputGun).config.builder == "/items/buildscripts/buildweapon.lua" then
     if world.containerItemAt(entity.id(), 0) == nil and world.containerItemAt(entity.id(), 1) == nil and world.containerItemAt(entity.id(), 2) == nil then
       return disassemble(inputGun)
     end
@@ -18,22 +21,21 @@ function disassemble(weapon)
   end
 
   local weaponConfig = root.itemConfig(weapon).config
+
+  -- TODO: Replace with parameter from the own gun, not pased to the object
   for partName,stats in pairs(self.partStats) do
 
     -- Basic part initialization
     parts[partName] = {
-      name = buildName(partName, weaponConfig),
+      name = "WA_" .. partName,
       count = 1,
       parameters = {
-        disassembled = true,
-        partType = partName,
         rarity = weaponConfig.rarity,
         image = getPartImage(partName, weaponConfig),
         inventoryIcon = getPartImage(partName, weaponConfig),
         shortdescription = buildShortDescription(partName, weaponConfig),
         description = buildDescription(partName, weaponConfig),
-        weaponType = root.itemConfig(weapon).config.category,
-        weaponData = {}
+        weaponType = weaponConfig.category
       }
     }
 
@@ -46,7 +48,6 @@ function disassemble(weapon)
 
   end
 
-  sb.logInfo("parts disassembled : %s", parts)
   return parts
 end
 
@@ -59,17 +60,21 @@ end
 
 function buildShortDescription(partName, weaponConfig)
   local partNiceName = {middle = "Body", butt = "Stock", barrel = "Barrel"}
-  return weaponConfig.shortdescription .. " " .. partNiceName[partName]
+  local weaponNiceName = string.gsub(weaponConfig.shortdescription, "(%w+)", "", 1)
+  return weaponNiceName .. " " .. partNiceName[partName]
 end
 
 function buildDescription(partName, weaponConfig)
   local description = ""
   if partName == "butt" then
-    description = "Special ability:\n    " .. weaponConfig.tooltipFields.altAbilityLabel
+    description = "Level:           " .. weaponConfig.level
+    if weaponConfig.tooltipFields.altAbilityLabel then
+      description = description .. "\nSpecial ability: " .. weaponConfig.tooltipFields.altAbilityLabel
+    end
   elseif partName == "middle" then
-    description = "Rate of fire:\n    " .. weaponConfig.tooltipFields.speedLabel
+    description = "Level:        " .. weaponConfig.level .. "\nRate of fire: " .. weaponConfig.tooltipFields.speedLabel
   elseif partName == "barrel" then
-    description = "Damage per second:\n    " .. weaponConfig.tooltipFields.dpsLabel
+    description = "Level:             " .. weaponConfig.level .. "\nDamage per second: " .. weaponConfig.tooltipFields.dpsLabel
   end
   return description
 end

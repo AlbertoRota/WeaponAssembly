@@ -10,15 +10,21 @@ function combineParts()
 end
 
 function getInputParts()
+  -- We have all the parts
   local parts = {}
-
   parts["butt"] = world.containerItemAt(entity.id(), 0)
   parts["middle"] = world.containerItemAt(entity.id(), 1)
   parts["barrel"] = world.containerItemAt(entity.id(), 2)
+  if not parts["butt"] or parts["butt"].name ~= "WA_butt" then return false end
+  if not parts["middle"] or parts["middle"].name ~= "WA_middle" then return false end
+  if not parts["barrel"] or parts["barrel"].name ~= "WA_barrel" then return false end
 
-  if not parts["butt"] or parts["butt"].parameters.partType ~= "butt" then return false end
-  if not parts["middle"] or parts["middle"].parameters.partType ~= "middle" then return false end
-  if not parts["barrel"] or parts["barrel"].parameters.partType ~= "barrel" then return false end
+  -- All the parts are of the same type
+  local partTypes = {}
+  partTypes["butt"] = parts["butt"].parameters.weaponType
+  partTypes["middle"] = parts["middle"].parameters.weaponType
+  partTypes["barrel"] = parts["barrel"].parameters.weaponType
+  if partTypes["butt"] ~= partTypes["middle"] or partTypes["middle"] ~= partTypes["barrel"] then return false end
 
   return parts
 end
@@ -31,7 +37,6 @@ function assemble(parts)
     count = 1,
     parameters = {
       itemName = rarity .. weaponType,
-      assembled = true,
       rarity = rarity
     }
   }
@@ -43,11 +48,8 @@ function assemble(parts)
     util.mergeTable(newGun, cloneProperties(propertiesToStore, parts[partName].parameters.weaponData))
   end
 
-  sb.logInfo("weaponDataArr : %s", weaponDataArr)
   local propertiesToAverage = root.itemConfig(parts["middle"]).config.propertiesToAverage
-  sb.logInfo("propertiesToAverage : %s", propertiesToAverage)
   local averagedProperties = averageProperties(propertiesToAverage, weaponDataArr)
-  sb.logInfo("averagedProperties : %s", averagedProperties)
   util.mergeTable(newGun, averagedProperties)
 
   return newGun

@@ -4,10 +4,10 @@ require "/scripts/weaponassembly/gunassembler/ga_disassemblyManager.lua"
 
 function init(virtual)
   if not virtual then
-    self.acceptedWeapons = config.getParameter("acceptedWeapons", {})
     self.partStats = config.getParameter("partStats", {})
+
+    -- TODO: Use this somewere, no need to hardcode things
     self.partIndex = {butt = 1, middle = 2, barrel = 3}
-    self.partNames = config.getParameter("partNames", {})
 
     self.globalStats = {"weaponType", "level", "levelScale"}
 
@@ -32,6 +32,7 @@ end
 
 function containerSlotsChanged(slots)
   if slots[1] == 3 then
+    if storage.inventory[4] then sb.logInfo("Input gun : %s", root.itemConfig(storage.inventory[4])) end
     containerTakeItem(0)
     containerTakeItem(1)
     containerTakeItem(2)
@@ -46,6 +47,9 @@ function containerSlotsChanged(slots)
     containerPutItem(parts["butt"], 0)
     containerPutItem(parts["middle"], 1)
     containerPutItem(parts["barrel"], 2)
+    if storage.inventory[1] then sb.logInfo("Output butt   : %s", root.itemConfig(storage.inventory[1])) end
+    if storage.inventory[2] then sb.logInfo("Output middle : %s", root.itemConfig(storage.inventory[2])) end
+    if storage.inventory[3] then sb.logInfo("Output barrel : %s", root.itemConfig(storage.inventory[3])) end
     return
   end
 
