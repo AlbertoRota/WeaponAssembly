@@ -1,11 +1,11 @@
 {
-  "itemName" : "assaultriflebarrel",
+  "itemName" : "WA_barrel",
   "price" : 0,
   "rarity" : "Common",
   "category" : "craftingMaterial",
-  "inventoryIcon" : "assaultriflebarrel.png",
-  "description" : "A barrel stripped from a fully automatic, military grade rifle.",
-  "shortdescription" : "Assault Rifle Barrel",
+  "inventoryIcon" : "WA_barrel.png",
+  "description" : "A barrel stripped from a weapon.",
+  "shortdescription" : "Barrel",
   "itemTags" : [ "reagent" ],
   "propertiesToStore" : {
     "config" : {

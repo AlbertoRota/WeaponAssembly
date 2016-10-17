@@ -45,15 +45,6 @@
 
   "assemblyRate" : 0.5,
 
-  "partNames": [
-    ["Assault Rifle", "assaultrifle"]
-  ],
-  "acceptedWeapons" : {
-    "commonassaultrifle" : true,
-    "uncommonassaultrifle" : true,
-    "rareassaultrifle" : true
-  },
-
   "partStats" : {
     "butt": ["elementalType", "altAbilityType"],
     "middle": [ "fireTimeFactor", "energyUsageFactor"],

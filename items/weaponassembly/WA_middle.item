@@ -1,11 +1,11 @@
 {
-  "itemName" : "assaultriflemiddle",
+  "itemName" : "WA_middle",
   "price" : 0,
   "rarity" : "Common",
   "category" : "craftingMaterial",
-  "inventoryIcon" : "assaultriflemiddle.png",
-  "description" : "A body stripped from a fully automatic, military grade rifle.",
-  "shortdescription" : "Assault Rifle Body",
+  "inventoryIcon" : "WA_middle.png",
+  "description" : "A body stripped from a weapon.",
+  "shortdescription" : "Body",
   "itemTags" : [ "reagent" ],
   "propertiesToStore" : {
     "config" : {
