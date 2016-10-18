@@ -25,7 +25,6 @@ end
 
 function containerSlotsChanged(slots)
   if slots[1] == 3 then
-    if storage.inventory[4] then sb.logInfo("Input gun : %s", root.itemConfig(storage.inventory[4])) end
     containerTakeItem(0)
     containerTakeItem(1)
     containerTakeItem(2)
@@ -41,16 +40,12 @@ function containerSlotsChanged(slots)
     containerPutItem(parts["butt"] or parts["technique"], 0)
     containerPutItem(parts["middle"] or parts["handle"], 1)
     containerPutItem(parts["barrel"] or parts["blade"], 2)
-    if storage.inventory[1] then sb.logInfo("Output butt/technique   : %s", root.itemConfig(storage.inventory[1])) end
-    if storage.inventory[2] then sb.logInfo("Output middle/handle : %s", root.itemConfig(storage.inventory[2])) end
-    if storage.inventory[3] then sb.logInfo("Output barrel/blade : %s", root.itemConfig(storage.inventory[3])) end
     return
   end
 
   local weapon = combineParts()
   if weapon then
     containerPutItem(weapon, 3)
-    sb.logInfo("Output weapon : %s", root.itemConfig(weapon))
     return
   end
 
