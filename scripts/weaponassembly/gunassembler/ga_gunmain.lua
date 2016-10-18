@@ -2,17 +2,10 @@ require "/scripts/weaponassembly/util/util.lua"
 require "/scripts/weaponassembly/gunassembler/ga_assemblyManager.lua"
 require "/scripts/weaponassembly/gunassembler/ga_disassemblyManager.lua"
 
-function init(virtual)
-  if not virtual then
-    self.partStats = config.getParameter("partStats", {})
-
-    -- TODO: Use this somewere, no need to hardcode things
-    self.partIndex = {butt = 1, middle = 2, barrel = 3}
-
-    self.globalStats = {"weaponType", "level", "levelScale"}
-
-    if storage.inventory == nil then storage.inventory = {} end
-  end
+function init()
+  -- TODO: Try to do this better
+  self.partStats = config.getParameter("partStats", {})
+  if storage.inventory == nil then storage.inventory = {} end
 end
 
 function die()
@@ -44,24 +37,28 @@ function containerSlotsChanged(slots)
 
   local parts = breakIntoParts()
   if parts then
-    containerPutItem(parts["butt"], 0)
-    containerPutItem(parts["middle"], 1)
-    containerPutItem(parts["barrel"], 2)
-    if storage.inventory[1] then sb.logInfo("Output butt   : %s", root.itemConfig(storage.inventory[1])) end
-    if storage.inventory[2] then sb.logInfo("Output middle : %s", root.itemConfig(storage.inventory[2])) end
-    if storage.inventory[3] then sb.logInfo("Output barrel : %s", root.itemConfig(storage.inventory[3])) end
+    -- TODO: Check this, a for loop will be MUCH better
+    containerPutItem(parts["butt"] or parts["technique"], 0)
+    containerPutItem(parts["middle"] or parts["handle"], 1)
+    containerPutItem(parts["barrel"] or parts["blade"], 2)
+    if storage.inventory[1] then sb.logInfo("Output butt/technique   : %s", root.itemConfig(storage.inventory[1])) end
+    if storage.inventory[2] then sb.logInfo("Output middle/handle : %s", root.itemConfig(storage.inventory[2])) end
+    if storage.inventory[3] then sb.logInfo("Output barrel/blade : %s", root.itemConfig(storage.inventory[3])) end
     return
   end
 
-  local gun = combineParts()
-  if gun then
-    containerPutItem(gun, 3)
-    sb.logInfo("Output gun : %s", root.itemConfig(gun))
+  local weapon = combineParts()
+  if weapon then
+    containerPutItem(weapon, 3)
+    sb.logInfo("Output weapon : %s", root.itemConfig(weapon))
     return
   end
 
 end
 
+-------------------------------------------------------
+-- Urility functions
+-------------------------------------------------------
 function containerTakeItem(slot)
   world.containerTakeAt(entity.id(), slot)
   storage.inventory[slot+1] = nil

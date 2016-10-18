@@ -41,11 +41,8 @@ function cloneProperties (propertiesToStore, weaponConfig)
 end
 
 function averageProperties (propertiesToStore, weaponConfigArr)
-  sb.logInfo("called with propertiesToStore : %s", propertiesToStore)
-  sb.logInfo("called with weaponConfigArr : %s", weaponConfigArr)
   -- Load value/table into target and return
   if type(propertiesToStore) ~= "table" then
-    sb.logInfo("Mean of : %s", weaponConfigArr)
     return  mean(weaponConfigArr)
   end
 

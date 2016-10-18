@@ -1,0 +1,33 @@
+{
+  "itemName" : "WA_blade",
+  "price" : 0,
+  "rarity" : "Common",
+  "category" : "craftingMaterial",
+  "inventoryIcon" : "WA_blade.png",
+  "description" : "A blade stripped from a weapon.",
+  "shortdescription" : "Blade",
+  "itemTags" : [ "reagent" ],
+  "propertiesToStore" : {
+    "config" : {
+      "primaryAbility" : {
+         "baseDps" : true
+      }
+    },
+    "parameters" : {
+      "animationPartVariants":{
+         "blade" : true
+      },
+      "primaryAbility":{
+         "baseDpsFactor" : true
+      }
+    }
+  },
+  "propertiesToAverage" : {
+    "config" : {
+       "price" : true
+    },
+    "parameters":{
+      "level" : true
+    }
+  }
+}

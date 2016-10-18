@@ -1,0 +1,24 @@
+{
+  "itemName" : "WA_technique",
+  "price" : 0,
+  "rarity" : "Common",
+  "category" : "craftingMaterial",
+  "inventoryIcon" : "WA_technique.png",
+  "description" : "An ancient weapon technique.",
+  "shortdescription" : "Stock",
+  "itemTags" : [ "reagent" ],
+  "propertiesToStore" : {
+    "parameters":{
+      "altAbilityType" : true,
+      "elementalType" : true
+    }
+  },
+  "propertiesToAverage" : {
+    "config" : {
+       "price" : true
+    },
+    "parameters":{
+      "level" : true
+    }
+  }
+}

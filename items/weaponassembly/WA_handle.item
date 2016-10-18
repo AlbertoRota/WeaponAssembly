@@ -1,0 +1,37 @@
+{
+  "itemName" : "WA_handle",
+  "price" : 0,
+  "rarity" : "Common",
+  "category" : "craftingMaterial",
+  "inventoryIcon" : "WA_handle.png",
+  "description" : "A handle stripped from a weapon.",
+  "shortdescription" : "Body",
+  "itemTags" : [ "reagent" ],
+  "propertiesToStore" : {
+    "config" : {
+      "primaryAbility" : {
+         "fireTime" : true,
+         "energyUsage" : true
+       },
+       "paletteSwaps" : true
+    },
+    "parameters":{
+      "animationPartVariants":{
+         "handle" : true
+      },
+      "primaryAbility":{
+        "fireTimeFactor" : true,
+        "energyUsageFactor" : true
+      },
+      "seed" : true
+    }
+  },
+  "propertiesToAverage" : {
+    "config" : {
+       "price" : true
+    },
+    "parameters":{
+      "level" : true
+    }
+  }
+}

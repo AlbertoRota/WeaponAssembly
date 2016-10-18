@@ -9,15 +9,17 @@ function combineParts()
   end
 end
 
+-- TODO: Change this to ignore weapon name
 function getInputParts()
   -- We have all the parts
   local parts = {}
   parts["butt"] = world.containerItemAt(entity.id(), 0)
   parts["middle"] = world.containerItemAt(entity.id(), 1)
   parts["barrel"] = world.containerItemAt(entity.id(), 2)
-  if not parts["butt"] or parts["butt"].name ~= "WA_butt" then return false end
-  if not parts["middle"] or parts["middle"].name ~= "WA_middle" then return false end
-  if not parts["barrel"] or parts["barrel"].name ~= "WA_barrel" then return false end
+  sb.logInfo("debugParts = %s", parts)
+  if not parts["butt"] or (parts["butt"].name ~= "WA_butt" and parts["butt"].name ~= "WA_technique") then return false end
+  if not parts["middle"] or (parts["middle"].name ~= "WA_middle" and parts["middle"].name ~= "WA_handle") then return false end
+  if not parts["barrel"] or (parts["barrel"].name ~= "WA_barrel" and parts["barrel"].name ~= "WA_blade") then return false end
 
   -- All the parts are of the same type
   local partTypes = {}
@@ -31,12 +33,16 @@ end
 
 function assemble(parts)
   local rarity = findRarity(parts)
-  local weaponType = parts["middle"].parameters.weaponType:lower()
+
+  local weaponType = parts["middle"].parameters.weaponType
+  weaponType = string.gsub(weaponType, "<Rarity>", rarity, 1)
+  weaponType = string.gsub(weaponType, "<rarity>", rarity:lower(), 1)
+
   local newGun = {
-    name = rarity .. weaponType,
+    name = weaponType,
     count = 1,
     parameters = {
-      itemName = rarity .. weaponType,
+      itemName = weaponType,
       rarity = rarity
     }
   }
@@ -58,17 +64,6 @@ end
 -------------------------------------------------------
 -- Urility functions
 -------------------------------------------------------
-
-function findName(parts)
-  local nameTable = {}
-
-  if parts["middle"].parameters.weaponData.weaponName then nameTable[#nameTable+1] = parts["middle"].parameters.weaponData.weaponName end
-  if parts["butt"].parameters.weaponData.weaponName then nameTable[#nameTable+1] = parts["butt"].parameters.weaponData.weaponName end
-  if parts["barrel"].parameters.weaponData.weaponName then nameTable[#nameTable+1] = parts["barrel"].parameters.weaponData.weaponName end
-
-  return table.concat(nameTable, " ")
-end
-
 function findRarity(parts)
   local rarities = {"common", "uncommon", "rare", "legendary"}
   local rarityValues = {common = 1, uncommon = 2, rare = 3, legendary = 4}
@@ -79,4 +74,12 @@ function findRarity(parts)
   end
   local avg = math.floor(sum / 3 + 0.5)
   return rarities[avg]
+end
+
+function buildWeaponType(weaponConfig)
+  -- Capitalized and Lowecase rarity replacement
+  local weaponType = string.gsub(weaponConfig.itemName, weaponConfig.rarity, "<Rarity>", 1)
+  weaponType = string.gsub(weaponType, weaponConfig.rarity:lower(), "<rarity>", 1)
+
+  return weaponType
 end
