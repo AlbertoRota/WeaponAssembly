@@ -1,27 +1,27 @@
 {
-  "objectName" : "WA_gunassembler",
+  "objectName" : "WA_weaponassembler",
   "colonyTags" : ["misc"],
   "rarity" : "Common",
   "printable" : false,
-  "description" : "A gun assembly station",
-  "shortdescription" : "Gun Assembly Station",
+  "description" : "A weapon assembly station",
+  "shortdescription" : "Weapon Assembly Station",
   "race" : "generic",
   "category" : "storage",
   "price" : 200,
   "health" : 1.5,
   "objectType" : "container",
   "slotCount" : 4,
-  "uiConfig" : "/interface/weaponassembly/gunassembler/gunassembler.config",
-  "scripts" : [ "/scripts/weaponassembly/gunassembler/ga_gunmain.lua" ],
+  "uiConfig" : "/interface/weaponassembly/weaponassembler/WA_weaponassembler.config",
+  "scripts" : [ "/scripts/weaponassembly/WA_weaponAssemblerMain.lua" ],
   "scriptDelta" : 120,
-  "subtitle" : "Create custom ranged guns from parts",
+  "subtitle" : "Create custom weapons from parts",
   "frameCooldown" : 67,
   "autoCloseCooldown" : 3600,
 
-  "apexDescription" : "Machines like these are used to split and merge ranged weapons.",
+  "apexDescription" : "Machines like these are used to split and merge weapons.",
   "avianDescription" : "How useful, I can remodel my favourite weapons with this.",
   "floranDescription" : "Floran picksss best partsss with thisss.",
-  "glitchDescription" : "Impressed. This device can split and merge any ranged weapon.",
+  "glitchDescription" : "Impressed. This device can split and merge any weapon.",
   "humanDescription" : "I can use this to scrap any old weapons I've got. Neat!",
   "hylotlDescription" : "Such things are useful for ensuring excellent weapons.",
   "novakidDescription" : "I can use this here gadget to split and merge looted weapons.",
@@ -29,10 +29,10 @@
 
   "containerCallback" : "containerCallback",
 
-  "inventoryIcon" : "gunassembler.png:default.0",
+  "inventoryIcon" : "WA_weaponassembler.png:default.0",
   "orientations" : [
     {
-      "dualImage" : "gunassembler.png:<color>.<frame>",
+      "dualImage" : "WA_weaponassembler.png:<color>.<frame>",
       "frames" : 128,
       "animationCycle" : 10.0,
 
@@ -41,13 +41,6 @@
       "spaceScan" : 0.1,
       "anchors" : [ "bottom" ]
     }
-  ],
+  ]
 
-  "assemblyRate" : 0.5,
-
-  "partStats" : {
-    "butt": ["elementalType", "altAbilityType"],
-    "middle": [ "fireTimeFactor", "energyUsageFactor"],
-    "barrel": ["baseDpsFactor"]
-  }
 }

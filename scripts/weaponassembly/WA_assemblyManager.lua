@@ -1,5 +1,5 @@
 require "/scripts/util.lua"
-require "/scripts/weaponassembly/util/util.lua"
+require "/scripts/weaponassembly/WA_util.lua"
 
 function combineParts()
   local parts = getInputParts()

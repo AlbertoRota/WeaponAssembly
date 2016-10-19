@@ -3,7 +3,7 @@
     { "item" : "diamond", "count" : 1 }
   ],
   "output" : {
-    "item" : "WA_gunassembler",
+    "item" : "WA_weaponassembler",
     "count" : 1
   },
   "duration" : 2,

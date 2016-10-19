@@ -1,4 +1,4 @@
-require "/scripts/weaponassembly/util/util.lua"
+require "/scripts/weaponassembly/WA_util.lua"
 
 function breakIntoParts()
   local inputGun = world.containerItemAt(entity.id(), 3)
@@ -21,7 +21,6 @@ function disassemble(weapon)
   local weaponConfig = rootWeaponConfig.config
   local weaponParameters = rootWeaponConfig.parameters
 
-  -- TODO: Replace with parameter from the own gun, not pased to the object
   local partList = buildPartList(weaponParameters)
   for _, partName in ipairs(partList) do
     -- Basic part initialization
@@ -77,7 +76,7 @@ function buildShortDescription(partName, weaponConfig)
 end
 
 function buildDescription(partName, weaponConfig)
-  local description = "Level: " .. (weaponConfig.level or 0)
+  local description = "Level: " .. (weaponConfig.tooltipFields.levelLabel or 1)
   if partName == "butt" or partName == "technique" then
     if weaponConfig.tooltipFields.altAbilityLabel then
       description = description .. "\nSpecial ability: " .. weaponConfig.tooltipFields.altAbilityLabel

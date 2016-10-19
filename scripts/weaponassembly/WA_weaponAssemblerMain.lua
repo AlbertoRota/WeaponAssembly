@@ -1,10 +1,8 @@
-require "/scripts/weaponassembly/util/util.lua"
-require "/scripts/weaponassembly/gunassembler/ga_assemblyManager.lua"
-require "/scripts/weaponassembly/gunassembler/ga_disassemblyManager.lua"
+require "/scripts/weaponassembly/WA_util.lua"
+require "/scripts/weaponassembly/WA_assemblyManager.lua"
+require "/scripts/weaponassembly/WA_disassemblyManager.lua"
 
 function init()
-  -- TODO: Try to do this better
-  self.partStats = config.getParameter("partStats", {})
   if storage.inventory == nil then storage.inventory = {} end
 end
 
@@ -36,7 +34,6 @@ function containerSlotsChanged(slots)
 
   local parts = breakIntoParts()
   if parts then
-    -- TODO: Check this, a for loop will be MUCH better
     containerPutItem(parts["butt"] or parts["technique"], 0)
     containerPutItem(parts["middle"] or parts["handle"], 1)
     containerPutItem(parts["barrel"] or parts["blade"], 2)
