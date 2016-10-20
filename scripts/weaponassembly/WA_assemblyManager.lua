@@ -16,9 +16,10 @@ function getInputParts()
   parts["butt"] = world.containerItemAt(entity.id(), 0)
   parts["middle"] = world.containerItemAt(entity.id(), 1)
   parts["barrel"] = world.containerItemAt(entity.id(), 2)
+  -- TODO: Move this to other config file
   if not parts["butt"] or (parts["butt"].name ~= "WA_butt" and parts["butt"].name ~= "WA_technique") then return false end
   if not parts["middle"] or (parts["middle"].name ~= "WA_middle" and parts["middle"].name ~= "WA_handle") then return false end
-  if not parts["barrel"] or (parts["barrel"].name ~= "WA_barrel" and parts["barrel"].name ~= "WA_blade") then return false end
+  if not parts["barrel"] or (parts["barrel"].name ~= "WA_barrel" and parts["barrel"].name ~= "WA_blade" and parts["barrel"].name ~= "WA_crown") then return false end
 
   -- All the parts are of the same type
   local partTypes = {}

@@ -1,0 +1,34 @@
+{
+  "itemName" : "WA_crown",
+  "price" : 0,
+  "rarity" : "Common",
+  "category" : "craftingMaterial",
+  "inventoryIcon" : "WA_crown.png",
+  "description" : "A crown stripped from a weapon.",
+  "shortdescription" : "Crown",
+  "itemTags" : [ "reagent" ],
+  "propertiesToStore" : {
+    "config" : {
+      "primaryAbility" : {
+         "baseDps" : true
+      }
+    },
+    "parameters" : {
+      "animationPartVariants":{
+         "crown" : true
+      },
+      "primaryAbility":{
+         "baseDpsFactor" : true
+      },
+      "primaryAbilityType":true
+    }
+  },
+  "propertiesToAverage" : {
+    "config" : {
+       "price" : true
+    },
+    "parameters":{
+      "level" : true
+    }
+  }
+}

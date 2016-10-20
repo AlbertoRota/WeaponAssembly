@@ -18,6 +18,7 @@ function disassemble(weapon)
   end
 
   local rootWeaponConfig = root.itemConfig(weapon)
+  sb.logInfo("Input weapon = %s", rootWeaponConfig)
   local weaponConfig = rootWeaponConfig.config
   local weaponParameters = rootWeaponConfig.parameters
 
@@ -66,11 +67,17 @@ function buildPartList(weaponParameters)
 end
 
 function getPartImage(partName, weaponConfig)
+  -- Special weapon parts
+  if partName == "technique" and weaponConfig.animationParts["stone"] then
+    return weaponConfig.animationParts["stone"]
+  end
+
+  -- Default weapon parts
   return weaponConfig.animationParts[partName]
 end
 
 function buildShortDescription(partName, weaponConfig)
-  local partNiceName = {middle = "Body", butt = "Stock", barrel = "Barrel", handle = "Handle", blade = "Blade", technique = "Technique"}
+  local partNiceName = {middle = "Body", butt = "Stock", barrel = "Barrel", handle = "Handle", blade = "Blade", technique = "Technique", crown="Crown"}
   local weaponNiceName = string.gsub(weaponConfig.shortdescription, "(%w+)", "", 1)
   return weaponNiceName .. " " .. (partNiceName[partName] or "Unknown part")
 end
@@ -85,7 +92,11 @@ function buildDescription(partName, weaponConfig)
     description = description .. "\nRate of fire: " .. weaponConfig.tooltipFields.speedLabel
   elseif partName == "barrel" or partName == "blade" then
     description = description .. "\nDamage per second: " .. weaponConfig.tooltipFields.dpsLabel
+  elseif partName == "crown" then
+    description = description .. "\nPrimary ability: " .. string.gsub(weaponConfig.tooltipFields.primaryAbilityLabel, "(%w+)", "", 1)
   end
+
+
   return description
 end
 
