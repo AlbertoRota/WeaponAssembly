@@ -1,10 +1,10 @@
 require "/scripts/weaponassembly/WA_util.lua"
 
 function breakIntoParts()
-  local inputGun = world.containerItemAt(entity.id(), 3)
-  if inputGun and root.itemConfig(inputGun).config.builder == "/items/buildscripts/buildweapon.lua" then
+  local inputWeapon = world.containerItemAt(entity.id(), 3)
+  if isValidWeapon(inputWeapon) then
     if world.containerItemAt(entity.id(), 0) == nil and world.containerItemAt(entity.id(), 1) == nil and world.containerItemAt(entity.id(), 2) == nil then
-      return disassemble(inputGun)
+      return disassemble(inputWeapon)
     end
   end
 end
@@ -18,7 +18,6 @@ function disassemble(weapon)
   end
 
   local rootWeaponConfig = root.itemConfig(weapon)
-  sb.logInfo("Input weapon = %s", rootWeaponConfig)
   local weaponConfig = rootWeaponConfig.config
   local weaponParameters = rootWeaponConfig.parameters
 
@@ -46,20 +45,32 @@ function disassemble(weapon)
     parts[partName].parameters.averageableData = cloneProperties(propertiesToAverage, root.itemConfig(weapon))
 
   end
-
+  
   return parts
 end
 
 -------------------------------------------------------
 -- Urility functions
 -------------------------------------------------------
+function isValidWeapon(weapon)
+  if weapon then
+    local builder = root.itemConfig(weapon).config.builder
+    if builder == "/items/buildscripts/buildweapon.lua" or builder == "/items/buildscripts/sup_buildweapon.lua"  then
+      return true
+    end
+  end
+  return false
+end
+
 -- TODO: Review this code to make it better
 function buildPartList(weaponParameters)
   local partList = {}
   local partCount = 0
   for k,v in pairs(weaponParameters.animationPartVariants) do
+    if k ~= "muzzleFlash" then
       table.insert(partList, k)
       partCount = partCount + 1
+    end
   end
   if partCount == 2 then table.insert(partList, "technique") end
 
