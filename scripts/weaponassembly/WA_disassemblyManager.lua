@@ -45,7 +45,7 @@ function disassemble(weapon)
     parts[partName].parameters.averageableData = cloneProperties(propertiesToAverage, root.itemConfig(weapon))
 
   end
-  
+
   return parts
 end
 
