@@ -34,7 +34,7 @@ function containerSlotsChanged(slots)
 
   local parts = breakIntoParts()
   if parts then
-    -- TODO: Modify how the info is stored to retrieve it by number rather than by name
+    -- REVIEW: Modify how the info is stored to retrieve it by number rather than by name
     containerPutItem(parts["butt"] or parts["technique"], 0)
     containerPutItem(parts["middle"] or parts["handle"], 1)
     containerPutItem(parts["barrel"] or parts["blade"] or parts["crown"], 2)

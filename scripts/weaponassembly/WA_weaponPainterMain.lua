@@ -40,7 +40,7 @@ end
 -------------------------------------------------------
 -- Urility functions
 -------------------------------------------------------
--- TODO: This code is duplicated, generalize it
+-- REVIEW: This code is duplicated, generalize it
 function containerTakeItem(slot)
   world.containerTakeNumItemsAt(entity.id(), slot, 1)
   storage.inventory[slot+1] = world.containerItemAt(entity.id(), slot)

@@ -44,7 +44,7 @@ end
 -------------------------------------------------------
 -- Urility functions
 -------------------------------------------------------
--- TODO: Duplicate code, clean it
+-- REVIEW: Duplicate code, clean it
 function isValidWeapon(weapon)
   if weapon then
     local builder = root.itemConfig(weapon).config.builder

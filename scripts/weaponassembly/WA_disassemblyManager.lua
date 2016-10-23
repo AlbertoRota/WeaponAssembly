@@ -62,7 +62,7 @@ function isValidWeapon(weapon)
   return false
 end
 
--- TODO: Review this code to make it better
+-- REVIEW: Review this code to make it better
 function buildPartList(weaponParameters)
   local partList = {}
   local partCount = 0
