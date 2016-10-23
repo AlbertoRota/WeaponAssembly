@@ -192,8 +192,8 @@ function build(directory, config, parameters, level, seed)
   config.tooltipFields.speedLabel = util.round(1 / fireTime, 1)
   config.tooltipFields.damagePerShotLabel = util.round(baseDps * fireTime * config.damageLevelMultiplier, 1)
   config.tooltipFields.energyPerShotLabel = util.round(energyUsage * fireTime, 1)
-  if elementalType ~= "physical" then
-    config.tooltipFields.damageKindImage = "/interface/elements/"..elementalType..".png"
+  if elementalType ~= "honk" then
+    config.tooltipFields.damageKindImage = "/projectiles/guns/"..config.iconType.."/"..config.primaryAbility.projectileType.."/icon.png"
   end
   if config.primaryAbility then
     config.tooltipFields.primaryAbilityTitleLabel = "Primary:"
