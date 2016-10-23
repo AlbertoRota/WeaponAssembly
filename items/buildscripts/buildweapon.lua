@@ -106,8 +106,10 @@ function build(directory, config, parameters, level, seed)
   if parameters.WA_customPalettes then
     -- Custom Palette swaps from the "Weapon Painting Station"
     local layers = root.assetJson(util.absolutePath(directory,"/items/active/weapons/colors/WA_layers.weaponcolors"))
+    local weaponType = "melee"
+    if config.primaryAbility.projectileParameters then weaponType = "ranged" end
     for k,v in pairs(parameters.WA_customPalettes) do
-      local sourceColors = layers[v.layer]
+      local sourceColors = layers[weaponType .. k]
       local targetColors = root.assetJson(util.absolutePath(directory, v.palette)).colors[v.colorIndex]
       for i in ipairs(sourceColors) do selectedSwaps[ sourceColors[i] ] = targetColors[i] end
     end
