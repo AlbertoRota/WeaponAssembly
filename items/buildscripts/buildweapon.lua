@@ -101,22 +101,23 @@ function build(directory, config, parameters, level, seed)
 
   -- build palette swap directives
   config.paletteSwaps = ""
-
   local selectedSwaps = {}
-  if parameters.WA_customPalettes then
-    -- Custom Palette swaps from the "Weapon Painting Station"
-    local layers = root.assetJson(util.absolutePath(directory,"/items/active/weapons/colors/WA_layers.weaponcolors"))
-    local weaponType = "melee"
-    if config.primaryAbility.projectileParameters then weaponType = "ranged" end
-    for k,v in pairs(parameters.WA_customPalettes) do
-      local sourceColors = layers[weaponType .. k]
-      local targetColors = root.assetJson(util.absolutePath(directory, v.palette)).colors[v.colorIndex]
-      for i in ipairs(sourceColors) do selectedSwaps[ sourceColors[i] ] = targetColors[i] end
+  if builderConfig.palette then
+    if parameters.WA_customPalettes then
+      local layers = root.assetJson(util.absolutePath(directory,"/items/active/weapons/colors/WA_layers.weaponcolors"))
+      local weaponType = string.match(builderConfig.palette, "/(%a+)%.weaponcolors")
+      for k,v in pairs(parameters.WA_customPalettes) do
+        local sourceColors = layers[weaponType .. k]
+        local targetColors = root.assetJson(util.absolutePath(directory, v.palette)).colors[v.colorIndex]
+        for i in ipairs(sourceColors) do selectedSwaps[ sourceColors[i] ] = targetColors[i] end
+      end
+    else
+      local palette = root.assetJson(util.absolutePath(directory, builderConfig.palette))
+      local selectedSwaps = randomFromList(palette.swaps, seed, "paletteSwaps")
+      for k, v in pairs(selectedSwaps) do
+        config.paletteSwaps = string.format("%s?replace=%s=%s", config.paletteSwaps, k, v)
+      end
     end
-  elseif builderConfig.palette then
-    -- Vanilla random swaps
-    local palette = root.assetJson(util.absolutePath(directory, builderConfig.palette))
-    selectedSwaps = randomFromList(palette.swaps, seed, "paletteSwaps")
   end
 
   -- Apply selected swaps
