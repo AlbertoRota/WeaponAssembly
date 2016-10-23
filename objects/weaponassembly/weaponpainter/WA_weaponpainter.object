@@ -1,0 +1,46 @@
+{
+  "objectName" : "WA_weaponpainter",
+  "colonyTags" : ["misc"],
+  "rarity" : "Common",
+  "printable" : false,
+  "description" : "A weapon painting station",
+  "shortdescription" : "Weapon Painting Station",
+  "race" : "generic",
+  "category" : "storage",
+  "price" : 200,
+  "health" : 1.5,
+  "objectType" : "container",
+  "slotCount" : 4,
+  "uiConfig" : "/interface/weaponassembly/weaponpainter/WA_weaponpainter.config",
+  "scripts" : [ "/scripts/weaponassembly/WA_weaponAssemblerMain.lua" ],
+  "scriptDelta" : 120,
+  "subtitle" : "Customize wepon paintjobs",
+  "frameCooldown" : 67,
+  "autoCloseCooldown" : 3600,
+
+  "apexDescription" : "Machines like these are used to paint weapons.",
+  "avianDescription" : "How useful, I can paint my favourite weapons with this.",
+  "floranDescription" : "Floran picksss best colorsss with thisss.",
+  "glitchDescription" : "Impressed. This device can paint any weapon.",
+  "humanDescription" : "I can use this to paint any old weapons I've got. Neat!",
+  "hylotlDescription" : "Such things are useful for ensuring beautiful weapons.",
+  "novakidDescription" : "I can use this here gadget to paint looted weapons.",
+
+
+  "containerCallback" : "containerCallback",
+
+  "inventoryIcon" : "WA_weaponpainter.png:default.0",
+  "orientations" : [
+    {
+      "dualImage" : "WA_weaponpainter.png:<color>.<frame>",
+      "frames" : 128,
+      "animationCycle" : 10.0,
+
+      "imagePosition" : [-8, -8],
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+    }
+  ]
+
+}
