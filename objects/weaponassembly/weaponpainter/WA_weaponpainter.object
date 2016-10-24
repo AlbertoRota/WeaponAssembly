@@ -29,12 +29,12 @@
 
   "containerCallback" : "containerCallback",
 
-  "inventoryIcon" : "WA_weaponpainter.png:default.0",
+  "inventoryIcon" : "WA_weaponpainter.png:default.10",
   "orientations" : [
     {
       "dualImage" : "WA_weaponpainter.png:<color>.<frame>",
-      "frames" : 128,
-      "animationCycle" : 10.0,
+      "frames" : 150,
+      "animationCycle" : 12.5,
 
       "imagePosition" : [-8, -8],
 
