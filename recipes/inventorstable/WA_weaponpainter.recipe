@@ -1,0 +1,11 @@
+{
+  "input" : [
+    { "item" : "diamond", "count" : 1 }
+  ],
+  "output" : {
+    "item" : "WA_weaponpainter",
+    "count" : 1
+  },
+  "duration" : 2,
+  "groups" : [ "inventorstable", "craftingstations", "all" ]
+}
