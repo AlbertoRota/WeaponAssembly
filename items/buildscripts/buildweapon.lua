@@ -109,7 +109,12 @@ function build(directory, config, parameters, level, seed)
       for k,v in pairs(parameters.WA_customPalettes) do
         local sourceColors = layers[weaponType .. k]
         local targetColors = root.assetJson(util.absolutePath(directory, v.palette)).colors[v.colorIndex]
-        for i in ipairs(sourceColors) do selectedSwaps[ sourceColors[i] ] = targetColors[i] end
+        if sourceColors then
+          for i in ipairs(sourceColors) do selectedSwaps[ sourceColors[i] ] = targetColors[i] end
+        else
+          local palette = root.assetJson(util.absolutePath(directory, builderConfig.palette))
+          selectedSwaps = randomFromList(palette.swaps, seed, "paletteSwaps")
+        end
       end
     else
       local palette = root.assetJson(util.absolutePath(directory, builderConfig.palette))

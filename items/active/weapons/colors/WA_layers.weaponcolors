@@ -5,9 +5,5 @@
 
   "meleemain"       : ["676767", "b1b1b1", "e9e9e9"],
   "meleesecondary"  : ["890900", "e5323b", "ff7060"],
-  "meleedetail"     : ["0964a0", "2992bc", "60b9ff"],
-
-  "avianmain"       : ["60411b", "896f34", "c3ae4f"],
-  "aviansecondary"  : ["871132", "b22042", "e05281"],
-  "aviandetail"     : ["ffffff", "ffffff", "ffffff"]
+  "meleedetail"     : ["0964a0", "2992bc", "60b9ff"]
 }
