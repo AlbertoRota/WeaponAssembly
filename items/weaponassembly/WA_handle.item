@@ -23,12 +23,14 @@
         "fireTimeFactor" : true,
         "energyUsageFactor" : true
       },
-      "seed" : true
+      "seed" : true,
+      "WA_customPalettes" : true
     }
   },
   "propertiesToAverage" : {
     "config" : {
-       "price" : true
+       "price" : true,
+       "level" : true
     },
     "parameters":{
       "level" : true

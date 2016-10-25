@@ -26,6 +26,9 @@ function containerSlotsChanged(slots)
     containerTakeItem(0)
     containerTakeItem(1)
     containerTakeItem(2)
+    if world.containerItemAt(entity.id(), 3) then
+      sb.logInfo("Weapon data = %s", root.itemConfig(world.containerItemAt(entity.id(), 3)))
+    end
   end
   if slots[1] == 0 or slots[1] == 1 or slots[1] == 2 then
     containerTakeItem(3)

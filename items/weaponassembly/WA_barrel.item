@@ -30,7 +30,8 @@
   },
   "propertiesToAverage" : {
     "config" : {
-       "price" : true
+       "price" : true,
+       "level" : true
     },
     "parameters":{
       "level" : true
