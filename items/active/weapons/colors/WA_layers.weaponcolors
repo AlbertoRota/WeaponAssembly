@@ -1,9 +1,42 @@
 {
+  // Vanilla ranged source colors
   "rangedmain"      : ["404040", "606060", "808080"],
   "rangedsecondary" : ["871132", "b22042", "e35f5d"],
   "rangeddetail"    : ["ffffff", "ffffff", "ffffff"],
 
+  // Vanilla melee source colors
   "meleemain"       : ["676767", "b1b1b1", "e9e9e9"],
   "meleesecondary"  : ["890900", "e5323b", "ff7060"],
-  "meleedetail"     : ["0964a0", "2992bc", "60b9ff"]
+  "meleedetail"     : ["0964a0", "2992bc", "60b9ff"],
+
+  // Weapon Megapack source colors
+  "oldmeleemain"       : ["676767", "B1B1B1", "E9E9E9"],
+  "oldmeleesecondary"  : ["605C57", "A89E93", "D2C5B6"],
+  "oldmeleedetail"     : ["F32200", "FFAB9E", "FEFFFF"],
+
+  // Supper's Weapons Mod source colors
+  "avianmain"      : ["60411b", "896f34", "c3ae4f"],
+  "aviansecondary" : ["871132", "b22042", "e05281"],
+  "aviandetail"    : ["510011", "ffffff", "ffffff"],
+  "bonemain"      : ["871132", "b22042", "e35f5d"],
+  "bonesecondary" : ["404040", "606060", "808080"],
+  "bonedetail"    : ["ffffff", "ffffff", "ffffff"],
+  "crossbowmain"      : ["871132", "b22042", "e35f5d"],
+  "crossbowsecondary" : ["3b3b3b", "6a6a6a", "a9a9a9"],
+  "crossbowdetail"    : ["222222", "ffffff", "ffffff"],
+  "floranmain"      : ["871132", "b22042", "e35f5d"],
+  "floransecondary" : ["3b3b3b", "6a6a6a", "a9a9a9"],
+  "florandetail"    : ["222222", "ffffff", "ffffff"],
+  "pulseriflemain"      : ["871132", "b22042", "e35f5d"],
+  "pulseriflesecondary" : ["404040", "606060", "808080"],
+  "pulserifledetail"    : ["ffffff", "ffffff", "ffffff"],
+  "revolvermain"      : ["871132", "b22042", "e35f5d"],
+  "revolversecondary" : ["404040", "606060", "808080"],
+  "revolverdetail"    : ["ffffff", "ffffff", "ffffff"],
+  "shattergunmain"      : ["871132", "b22042", "e35f5d"],
+  "shattergunsecondary" : ["404040", "606060", "808080"],
+  "shattergundetail"    : ["ffffff", "ffffff", "ffffff"],
+  "sup_rangedmain"      : ["871132", "b22042", "e35f5d"],
+  "sup_rangedsecondary" : ["404040", "606060", "808080"],
+  "sup_rangeddetail"    : ["ffffff", "ffffff", "ffffff"]
 }
