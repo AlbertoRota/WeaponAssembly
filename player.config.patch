@@ -1,3 +1,4 @@
 [
-	{ "op": "add", "path": "/defaultBlueprints/tier1/-", "value": { "item" : "WA_weaponassembler" }}
+	{ "op": "add", "path": "/defaultBlueprints/tier1/-", "value": { "item" : "WA_weaponassembler" }},
+	{ "op": "add", "path": "/defaultBlueprints/tier1/-", "value": { "item" : "WA_weaponpainter" }}
 ]
