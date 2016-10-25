@@ -1,3 +1,5 @@
+require "/scripts/weaponassembly/WA_precdyeHelper.lua"
+
 function paintWeapon()
   local weapon = getWeapon()
   local inks = getInks()
@@ -21,7 +23,7 @@ function getInks()
 
   for k,v in pairs(items) do
     local itemConfig = root.itemConfig(v).config
-    if not itemConfig.dyeColorIndex then return false end
+    if not itemConfig.dyeColorIndex and not itemConfig.dyeMode then return false end
     inks[k] = itemConfig
   end
 
@@ -29,13 +31,24 @@ function getInks()
 end
 
 function paint(weapon, inks)
-  sb.logInfo("weapon to paint = %s", weapon)
   if not weapon.parameters.WA_customPalettes then weapon.parameters.WA_customPalettes = {} end
   for layer, ink in pairs(inks) do
-    weapon.parameters.WA_customPalettes[layer] = {
-      palette = ink.WA_palette or "/items/active/weapons/colors/WA_baseColors.weaponcolors",
-      colorIndex = ink.dyeColorIndex
-    }
+    if ink.dyeColorIndex and ink.dyeColorIndex > 0 then
+      local baseColors = root.assetJson("/items/active/weapons/colors/WA_baseColors.weaponcolors").colors
+      local targetColors = baseColors[ink.dyeColorIndex]
+      weapon.parameters.WA_customPalettes[layer] = targetColors
+    elseif  ink.dyeColorIndex and ink.dyeColorIndex == 0 then
+      weapon.parameters.WA_customPalettes[layer] = nil
+    elseif ink.dyeMode then
+      local colors = weapon.parameters.WA_customPalettes[layer]
+      if not colors then
+        local layers = root.assetJson("/items/active/weapons/colors/WA_layers.weaponcolors")
+        local palette = root.itemConfig(weapon).config.builderConfig[1].palette
+        local weaponPalette = string.match(palette, "/([^/]+)%.weaponcolors")
+        colors = layers[weaponPalette .. layer]
+      end
+      weapon.parameters.WA_customPalettes[layer] = applyPrecDye(colors, ink.dyeMode)
+    end
   end
 
   return weapon
