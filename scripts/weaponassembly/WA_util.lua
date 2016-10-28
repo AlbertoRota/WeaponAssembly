@@ -52,7 +52,7 @@ function averageProperties (propertiesToStore, weaponConfigArr)
   for k, v in pairs(propertiesToStore) do
     local t = {}
     for key,value in pairs(weaponConfigArr) do
-      t[key] = value[k] or 1
+      t[key] = value[k]
     end
     target[k] = averageProperties(propertiesToStore[k], t)
   end
@@ -73,5 +73,5 @@ function mean( t )
     end
   end
 
-  return (sum / count)
+  if count > 0 then return (sum / count) else return nil end
 end

@@ -11,6 +11,8 @@ __*Healthire*__ - Developer of [Gun Assembly](http://community.playstarbound.com
 
 __*Djinn*__ - For the outstanding __Gun assembly station__ art.
 
+__*Inf_Wolf14*__ - For the outstanding __Weapon painting station__ art.
+
 __*Mackinz*__ - For ([Offering Modpack Unpacking Services](http://community.playstarbound.com/threads/offering-modpack-unpacking-services.121824/)), where the original mod was unpacked.
 
 
